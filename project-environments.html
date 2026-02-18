@@ -15,7 +15,7 @@
             Back to Work
         </a>
         <a href="index.html" class="logo">
-            <img src="docs/logo M.jpg" alt="Logo" class="logo-img">
+            <img src="docs/logo M.png" alt="Logo" class="logo-img">
             <span>MIGUEL AGENJO<span class="accent-dot">.</span></span>
         </a>
     </nav>
@@ -32,7 +32,7 @@
         <div class="project-meta">
             <div class="meta-item">
                 <span class="meta-label">Category</span>
-                <span class="meta-value">Environment Art</span>
+                <span class="meta-value">Environment Art and set extension VFX.</span>
             </div>
             <div class="meta-item">
                 <span class="meta-label">Software</span>
@@ -40,32 +40,34 @@
             </div>
             <div class="meta-item">
                 <span class="meta-label">Role</span>
-                <span class="meta-value">Environment, Lighting, Look Dev</span>
+                <span class="meta-value">Layout, Scattering, Modeling, Look Development, Lighting</span>
             </div>
         </div>
 
         <div class="project-description">
-            <p>A showcase of environment work created for film, personal projects, and artistic exploration. Each piece focuses on atmosphere, scale, and storytelling through lighting and composition.</p>
+            <p>A showcase of environment work created for film, personal projects, and artistic exploration. Each piece focuses on atmosphere, scale, and storytelling through lighting and composition. Combining technical and artistic skills to create complex worlds.</p>
         </div>
 
         <div class="project-gallery">
             <div class="gallery-item">
                 <div class="gallery-images">
                     <img src="docs/miguel-agenjo-render-v3.jpg" alt="Environment render" class="active">
+                    <img src="docs/miguel-agenjo-renderbkdwn3.jpg" alt="Environment render 2">
                 </div>
                 <div class="caption">
-                    <strong>Environment Render</strong>
-                    Full scene with detailed vegetation, materials, and atmospheric lighting.
+                    <strong>Project: Across the stars. Personal.</strong>
+                    Full CG scene development.
                 </div>
             </div>
 
             <div class="gallery-item">
                 <div class="gallery-images">
                     <img src="docs/enviro_TheRoses.png" alt="The Roses environment" class="active">
+                    <img src="docs/enviro2_TheRoses.png" alt="The Roses environment">
                 </div>
                 <div class="caption">
-                    <strong>The Roses</strong>
-                    Stylized environment piece exploring organic architecture and natural overgrowth.
+                    <strong>Project: The Roses. Searchlight Pictures.</strong>
+                    Full CG replacement of the forest, terrain, and vegetation. Lead 3D artist for the project. 
                 </div>
             </div>
 
@@ -74,8 +76,8 @@
                     <img src="docs/hernan_temple.png" alt="Temple environment" class="active">
                 </div>
                 <div class="caption">
-                    <strong>Ancient Temple</strong>
-                    Architectural environment with weathered stone and jungle atmosphere.
+                    <strong>Project: Hernán. Prime video.</strong>
+                    Recreation of historical city of Tenochtitlan. Asset and prop work, layout, and lighting for multiple shots.
                 </div>
             </div>
 
@@ -84,8 +86,8 @@
                     <img src="docs/memorial_enviro.png" alt="Memorial environment" class="active">
                 </div>
                 <div class="caption">
-                    <strong>Memorial</strong>
-                    Atmospheric scene exploring mood through light and material contrast.
+                    <strong>Project: Five Days at Memorial. Apple TV+.</strong>
+                    Emmy Award-winning project for best environment. Responsible for vegetation creation, scatterings, look development assets, and lighting for a variety of set extension shots.
                 </div>
             </div>
 
@@ -95,10 +97,10 @@
                     <img src="docs/halo_village_2.png" alt="Village environment 2">
                 </div>
                 <div class="caption">
-                    <strong>Village</strong>
-                    Settlement environment with layered depth and architectural detail.
+                    <strong>Project: Halo. SkyShowtime +.</strong>
+                    Look development of environment assets and lighting for a variety of set extension and full CG shots.
                 </div>
-            </div>
+            </div>            
         </div>
     </div>
 
@@ -106,7 +108,97 @@
         <p>&copy; 2026 Miguel Agenjo. Designed with coffee and code.</p>
     </footer>
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close">&times;</button>
+        <button class="lightbox-nav lb-prev">&#8249;</button>
+        <button class="lightbox-nav lb-next">&#8250;</button>
+        <img id="lightbox-img" src="" alt="Fullscreen view">
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+
     <script>
+        // Lightbox with navigation & swipe
+        (function() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = lightbox.querySelector('.lightbox-close');
+            const prevBtn = lightbox.querySelector('.lb-prev');
+            const nextBtn = lightbox.querySelector('.lb-next');
+            const counter = document.getElementById('lightbox-counter');
+
+            let currentSrcs = [];
+            let currentIdx = 0;
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            function collectGallerySrcs(clickedImg) {
+                const galleryImages = clickedImg.closest('.gallery-images');
+                if (galleryImages) {
+                    return Array.from(galleryImages.querySelectorAll('img')).map(i => i.src);
+                }
+                const galleryItem = clickedImg.closest('.gallery-item');
+                if (galleryItem) {
+                    return Array.from(galleryItem.querySelectorAll('img')).map(i => i.src);
+                }
+                return [clickedImg.src];
+            }
+
+            function updateNav() {
+                const multi = currentSrcs.length > 1;
+                prevBtn.style.display = multi ? 'flex' : 'none';
+                nextBtn.style.display = multi ? 'flex' : 'none';
+                counter.textContent = multi ? (currentIdx + 1) + ' / ' + currentSrcs.length : '';
+            }
+
+            function showImage(idx) {
+                currentIdx = (idx + currentSrcs.length) % currentSrcs.length;
+                lightboxImg.src = currentSrcs[currentIdx];
+                updateNav();
+            }
+
+            document.querySelectorAll('.gallery-images img, .gallery-item > img').forEach(img => {
+                img.addEventListener('click', e => {
+                    e.stopPropagation();
+                    currentSrcs = collectGallerySrcs(img);
+                    currentIdx = currentSrcs.indexOf(img.src);
+                    if (currentIdx === -1) currentIdx = 0;
+                    showImage(currentIdx);
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            prevBtn.addEventListener('click', e => { e.stopPropagation(); showImage(currentIdx - 1); });
+            nextBtn.addEventListener('click', e => { e.stopPropagation(); showImage(currentIdx + 1); });
+            lightboxImg.addEventListener('click', e => e.stopPropagation());
+            lightbox.addEventListener('click', closeLightbox);
+            closeBtn.addEventListener('click', closeLightbox);
+
+            document.addEventListener('keydown', e => {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showImage(currentIdx - 1);
+                if (e.key === 'ArrowRight') showImage(currentIdx + 1);
+            });
+
+            // Touch swipe
+            lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+            lightbox.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) showImage(currentIdx + 1);
+                    else showImage(currentIdx - 1);
+                }
+            });
+        })();
+
         document.querySelectorAll('.gallery-images').forEach(container => {
             const images = container.querySelectorAll('img');
             if (images.length <= 1) return;

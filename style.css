@@ -106,6 +106,7 @@ nav {
     -webkit-text-fill-color: transparent;
     animation: shine 8s linear infinite;
     font-style: italic;
+    font-family: Arial, sans-serif;
 }
 
 @keyframes shine {
@@ -311,7 +312,7 @@ h1 span {
 /* INTEREST LINKS */
 .interest-links {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
     margin-top: 40px;
 }

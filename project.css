@@ -183,6 +183,25 @@ body {
     font-size: 1.05rem;
 }
 
+.gallery-item .caption ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+}
+
+.gallery-item .caption ul li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 4px;
+}
+
+.gallery-item .caption ul li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
 /* Multi-image gallery carousel */
 .gallery-images {
     position: relative;

@@ -22,6 +22,18 @@ body {
     color: var(--text-main);
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(0, 242, 255, 0.04), transparent 50%),
+        radial-gradient(ellipse at 60% 20%, rgba(255, 140, 50, 0.04), transparent 50%),
+        radial-gradient(ellipse at 50% 60%, rgba(0, 242, 255, 0.03), transparent 50%),
+        radial-gradient(ellipse at 30% 10%, rgba(255, 100, 30, 0.03), transparent 50%);
+    background-size: 200% 200%;
+    animation: breathe 12s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 /* Fondo con resplandor sutil */
@@ -182,7 +194,7 @@ h1 span {
 /* Bento Grid */
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
     grid-auto-rows: 200px;
     gap: 20px;
     padding: 0 5% 100px;

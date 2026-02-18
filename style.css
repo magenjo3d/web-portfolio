@@ -531,6 +531,11 @@ footer {
     .bento-characters, .bento-features, .bento-product, .bento-enviro, .bento-tools {
         grid-column: auto !important; grid-row: auto !important; height: 250px;
     }
+    .bento-characters { order: 1; }
+    .bento-enviro     { order: 2; }
+    .bento-features   { order: 3; }
+    .bento-product    { order: 4; }
+    .bento-tools      { order: 5; }
     .cv-grid { grid-template-columns: 1fr; }
     .cv-header { flex-direction: column; align-items: flex-start; gap: 20px; }
     .modal-content { max-width: 95%; }

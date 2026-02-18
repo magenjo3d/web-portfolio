@@ -218,6 +218,7 @@ h1 span {
 
 .tall { grid-row: span 2; background-size: cover; }
 .wide { grid-column: span 2; }
+.small { /* explicit placement via named classes */ }
 
 /* Bento grid placement — desktop */
 .bento-characters { grid-column: 1; grid-row: 1 / 3; }
@@ -526,7 +527,10 @@ footer {
     }
     .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
     .bento-item { grid-column: auto !important; grid-row: auto !important; height: 250px; }
-    .tall, .wide { grid-column: auto !important; grid-row: auto !important; height: 250px; }
+    .tall, .wide, .small { grid-column: auto !important; grid-row: auto !important; height: 250px; }
+    .bento-characters, .bento-features, .bento-product, .bento-enviro, .bento-tools {
+        grid-column: auto !important; grid-row: auto !important; height: 250px;
+    }
     .cv-grid { grid-template-columns: 1fr; }
     .cv-header { flex-direction: column; align-items: flex-start; gap: 20px; }
     .modal-content { max-width: 95%; }

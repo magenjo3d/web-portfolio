@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools Development | Miguel Agenjo</title>
+    <link rel="stylesheet" href="project.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="project-nav">
+        <a href="index.html#work" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to Work
+        </a>
+        <a href="index.html" class="logo">
+            <img src="docs/logo M.jpg" alt="Logo" class="logo-img">
+            <span>MIGUEL AGENJO<span class="accent-dot">.</span></span>
+        </a>
+    </nav>
+
+    <div class="project-hero">
+        <img src="docs/code_sample.png" alt="Tools Development">
+        <div class="project-hero-overlay">
+            <h1>Tools Development<span>.</span></h1>
+            <p class="project-tagline">Custom pipeline tools and automation for VFX production</p>
+        </div>
+    </div>
+
+    <div class="project-content">
+        <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label">Category</span>
+                <span class="meta-value">Pipeline & Tools</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Languages</span>
+                <span class="meta-value">Python, C, MEL</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Platforms</span>
+                <span class="meta-value">Maya, Houdini, Nuke</span>
+            </div>
+        </div>
+
+        <div class="project-description">
+            <p>Development of custom tools and scripts to streamline VFX production workflows. From lighting management utilities to asset pipeline automation, these tools improve efficiency and consistency across projects.</p>
+        </div>
+
+        <div class="project-gallery">
+
+            <div class="gallery-item wide">
+                <div class="gallery-images">
+                    <img src="docs/Ui_tool_lgtFindr.png" alt="Lighting Finder Tool UI" class="active">
+                </div>
+                <div class="caption">
+                    <strong>Lighting Finder Tool</strong>
+                    Custom UI tool designed to manage and organize lighting setups efficiently within Maya.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="project-footer">
+        <p>&copy; 2026 Miguel Agenjo. Designed with coffee and code.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.gallery-images').forEach(container => {
+            const images = container.querySelectorAll('img');
+            if (images.length <= 1) return;
+
+            let current = 0;
+
+            const prev = document.createElement('button');
+            prev.className = 'gallery-nav prev';
+            prev.innerHTML = '&#8249;';
+            const next = document.createElement('button');
+            next.className = 'gallery-nav next';
+            next.innerHTML = '&#8250;';
+            container.appendChild(prev);
+            container.appendChild(next);
+
+            const dotsContainer = document.createElement('div');
+            dotsContainer.className = 'gallery-dots';
+            images.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', () => goTo(i));
+                dotsContainer.appendChild(dot);
+            });
+            container.parentElement.insertBefore(dotsContainer, container.nextSibling);
+
+            const dots = dotsContainer.querySelectorAll('.gallery-dot');
+
+            function goTo(index) {
+                images[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = index;
+                images[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            prev.addEventListener('click', () => goTo((current - 1 + images.length) % images.length));
+            next.addEventListener('click', () => goTo((current + 1) % images.length));
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miguel Agenjo | Portfolio 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        .bento-item {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .bento-item-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            top: 0;
+            left: 0;
+        }
+
+        .bento-item-bg.active {
+            opacity: 1;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 30px;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-glow"></div>
+
+    <nav>
+        <div class="logo">
+            <img src="docs/logo M.jpg" alt="Logo" class="logo-img">
+            <span>MIGUEL AGENJO<span class="accent-dot">.</span></span>
+        </div>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#cv">CV</a>
+            <a href="#contact" class="nav-btn">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1>3D Generalist & Lighting TD<span>.</span></h1>
+            <p class="highlight-text">Creating worlds</p>
+        </section>
+
+        <section id="work" class="bento-grid">
+            <a href="project-characters.html" class="bento-item tall" style="background-image: url('docs/miguel-agenjo-comp-v002.jpg'); background-size: cover; background-position: center;" data-images="docs/miguel-agenjo-comp-v002.jpg,docs/miguel-agenjo-comp-v01.jpg,docs/dragon_1_render.png,docs/spider_render.png,docs/cicada_render.png">
+                <div class="overlay">
+                    <h3>Characters & Creatures</h3>
+                    <p></p>
+                </div>
+            </a>
+            <a href="project-environments.html" class="bento-item wide" style="background-image: url('docs/miguel-agenjo-render-v3.jpg'); background-size: cover; background-position: center;" data-images="docs/miguel-agenjo-render-v3.jpg,docs/enviro_TheRoses.png,docs/hernan_temple.png,docs/halo_village_1.png,docs/halo_village_2.png,docs/memorial_enviro.png">
+                <div class="overlay">
+                    <h3>3D Environments</h3>
+                    <p></p>
+                </div>
+            </a>
+            <a href="project-tools.html" class="bento-item tall" style="background-image: url('docs/code_sample.png'); background-size: cover; background-position: left;">
+                <div class="overlay">
+                    <h3>Tools development</h3>
+                    <p></p>
+                </div>
+            </a>
+            <a href="project-product.html" class="bento-item wide" style="background-image: url('docs/miguel-agenjo-exteriorbe2 - copia.jpg'); background-size: cover; background-position: center;">
+                <div class="overlay">
+                    <h3>Product visualization, Real Time & AI</h3>
+                    <p></p>
+                </div>
+            </a>
+        </section>
+
+        <section class="skills">
+            <h2>Core skills</h2>
+            <div class="skill-tags">
+                <span>3D Environments</span> <span>Lighting</span> <span>Look development</span> <span>Tool scripting</span> 
+            </div>       
+            
+            <h2 class="software-title">Software expertise</h2>
+            <div class="skill-tags">
+                <span>Maya</span> <span>Houdini</span> <span>Arnold/V-ray</span> 
+                <span>Nuke</span> <span>Substance Suite</span> <span>Python/C</span>
+                <span>Zbrush</span> <span>Mari</span> <span>SpeedTree</span>
+            </div>
+        </section>
+
+        <section id="cv" class="cv-section">
+            <div class="cv-header">
+                <h2>Curriculum summary</h2>
+                <a href="docs/CV_MiguelAgenjo_2025.pdf" class="nav-btn" download>Download PDF</a>
+            </div>
+
+            <div class="cv-grid">
+                <div class="cv-column">
+                    <h3>Experience</h3>
+                    <div class="cv-item">
+                        <span class="date">Mar. 2026 — Present</span>
+                        <h4>Senior Lighting TD/ 3D Generalist</h4>
+                        <p class="company">Metrópolis VFX</p>
+                    </div>
+                    <div class="cv-item">
+                        <span class="date">Nov. 2017 — Feb. 2026 </span>
+                        <h4>3D Generalist</h4>
+                        <p class="company">El Ranchito Imagen Digital</p>
+                    </div>
+                    <div class="cv-item">
+                        <span class="date">2020 — 2021 (4 months)</span>
+                        <h4>Online Mentor - 3D Fundamentals Course</h4>
+                        <p class="company">Animum Creativity Advanced School</p>
+                    </div>
+                </div>
+
+                <div class="cv-column">
+                    <h3>Education</h3>
+                    <div class="cv-item">
+                        <span class="date">2025 — Present</span>
+                        <h4>Bachellor's degree in Computer Science</h4>
+                        <p class="company">Unipro European University</p>
+                    </div>
+                    <div class="cv-item">
+                        <span class="date">2016 — 2018</span>
+                        <h4>Visual effects, Animation & Cinematography</h4>
+                        <p class="company">Trazos School of Digital Arts</p>
+                    </div>
+                </div>
+            </div>
+        </section> 
+        
+        <section id="contact" class="contact-section">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Let's connect<span>.</span></h2>
+                    <p></p>
+                    
+                    <div class="interest-links">
+                        <a href="https://www.linkedin.com/in/miguel-agenjo-ram%C3%ADrez?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="link-card">
+                            <span>LinkedIn</span>
+                            <small>Professional Network</small>
+                        </a>
+                        <a href="https://www.artstation.com/magenjo" target="_blank" class="link-card">
+                            <span>ArtStation</span>
+                            <small>Portfolio & Renders</small>
+                        </a>
+                        <a href="https://github.com/magenjo3d" target="_blank" class="link-card">
+                            <span>GitHub</span>
+                            <small>Technical Tools</small>
+                        </a>
+                        <a href="https://www.imdb.com/es-es/name/nm10652324/?ref_=ext_shr_lnk" target="_blank" class="link-card">
+                            <span>IMDb</span>
+                            <small>Film Credits</small>
+                        </a>
+                        <a href="https://vimeo.com/user60558430" target="_blank" class="link-card">
+                            <span>Vimeo</span>
+                            <small>Video Reel</small>
+                        </a>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="nav-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <p>© 2026 Miguel Agenjo. Designed with coffee and code.</p>
+    </footer>
+
+    <script>
+        // Initialize background image carousel for bento items
+        document.querySelectorAll('.bento-item[data-images]').forEach(item => {
+            const imagesString = item.getAttribute('data-images');
+            const images = imagesString.split(',').map(img => img.trim());
+            let currentIndex = 0;
+            let carouselInterval = null;
+            let startTimeout = null;
+
+            const overlay = item.querySelector('.overlay');
+            images.forEach((imgSrc) => {
+                const bgDiv = document.createElement('div');
+                bgDiv.className = 'bento-item-bg';
+                bgDiv.style.backgroundImage = `url('${imgSrc}')`;
+                item.insertBefore(bgDiv, overlay);
+            });
+
+            item.addEventListener('mouseenter', () => {
+                if (carouselInterval || startTimeout) return;
+                currentIndex = 0;
+
+                startTimeout = setTimeout(() => {
+                    startTimeout = null;
+                    const bgDivs = item.querySelectorAll('.bento-item-bg');
+                    currentIndex = 1 % images.length;
+                    bgDivs[currentIndex].classList.add('active');
+
+                    carouselInterval = setInterval(() => {
+                        const bgDivs = item.querySelectorAll('.bento-item-bg');
+                        bgDivs[currentIndex].classList.remove('active');
+                        currentIndex = (currentIndex + 1) % images.length;
+                        bgDivs[currentIndex].classList.add('active');
+                    }, 2000);
+                }, 10);
+            });
+
+            item.addEventListener('mouseleave', () => {
+                if (startTimeout) {
+                    clearTimeout(startTimeout);
+                    startTimeout = null;
+                }
+                if (carouselInterval) {
+                    clearInterval(carouselInterval);
+                    carouselInterval = null;
+                }
+                const bgDivs = item.querySelectorAll('.bento-item-bg');
+                bgDivs.forEach(div => div.classList.remove('active'));
+                currentIndex = 0;
+            });
+        });
+    </script>
+
+
+</body>
+</html>

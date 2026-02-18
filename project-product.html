@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Visualization, Real Time & AI | Miguel Agenjo</title>
+    <link rel="stylesheet" href="project.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="project-nav">
+        <a href="index.html#work" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to Work
+        </a>
+        <a href="index.html" class="logo">
+            <img src="docs/logo M.jpg" alt="Logo" class="logo-img">
+            <span>MIGUEL AGENJO<span class="accent-dot">.</span></span>
+        </a>
+    </nav>
+
+    <div class="project-hero">
+        <img src="docs/miguel-agenjo-exteriorbe2 - copia.jpg" alt="Product Visualization & AI">
+        <div class="project-hero-overlay">
+            <h1>Product Visualization, Real Time & AI<span>.</span></h1>
+            <p class="project-tagline">Exploring product rendering, real-time graphics, and AI-driven workflows</p>
+        </div>
+    </div>
+
+    <div class="project-content">
+        <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label">Category</span>
+                <span class="meta-value">Product Viz / R&D</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Software</span>
+                <span class="meta-value">Maya, V-Ray, Unreal Engine</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Focus</span>
+                <span class="meta-value">Rendering, Real-Time, AI Integration</span>
+            </div>
+        </div>
+
+        <div class="project-description">
+            <p>Work exploring the intersection of traditional product visualization, real-time rendering technologies, and AI-assisted content creation. These projects push the boundaries of what's possible with modern rendering and generative tools.</p>
+        </div>
+
+        <div class="project-gallery">
+            <div class="gallery-item">
+                <div class="gallery-images">
+                    <img src="docs/miguel-agenjo-exteriorbe2.jpg" alt="Exterior visualization 1" class="active">
+                    <img src="docs/miguel-agenjo-exteriorbe1.jpg" alt="Exterior visualization 2">
+                    <img src="docs/miguel-agenjo-grey.jpg" alt="Exterior visualization 3">
+                
+                </div>
+                <div class="caption">
+                    <strong>Exterior Visualization</strong>
+                    Architectural exterior render with detailed materials and natural lighting.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="project-footer">
+        <p>&copy; 2026 Miguel Agenjo. Designed with coffee and code.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.gallery-images').forEach(container => {
+            const images = container.querySelectorAll('img');
+            if (images.length <= 1) return;
+
+            let current = 0;
+
+            const prev = document.createElement('button');
+            prev.className = 'gallery-nav prev';
+            prev.innerHTML = '&#8249;';
+            const next = document.createElement('button');
+            next.className = 'gallery-nav next';
+            next.innerHTML = '&#8250;';
+            container.appendChild(prev);
+            container.appendChild(next);
+
+            const dotsContainer = document.createElement('div');
+            dotsContainer.className = 'gallery-dots';
+            images.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', () => goTo(i));
+                dotsContainer.appendChild(dot);
+            });
+            container.parentElement.insertBefore(dotsContainer, container.nextSibling);
+
+            const dots = dotsContainer.querySelectorAll('.gallery-dot');
+
+            function goTo(index) {
+                images[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = index;
+                images[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            prev.addEventListener('click', () => goTo((current - 1 + images.length) % images.length));
+            next.addEventListener('click', () => goTo((current + 1) % images.length));
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Environments | Miguel Agenjo</title>
+    <link rel="stylesheet" href="project.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="project-nav">
+        <a href="index.html#work" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to Work
+        </a>
+        <a href="index.html" class="logo">
+            <img src="docs/logo M.jpg" alt="Logo" class="logo-img">
+            <span>MIGUEL AGENJO<span class="accent-dot">.</span></span>
+        </a>
+    </nav>
+
+    <div class="project-hero">
+        <img src="docs/miguel-agenjo-render-v3.jpg" alt="3D Environments">
+        <div class="project-hero-overlay">
+            <h1>3D Environments<span>.</span></h1>
+            <p class="project-tagline">Building immersive worlds and cinematic landscapes</p>
+        </div>
+    </div>
+
+    <div class="project-content">
+        <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label">Category</span>
+                <span class="meta-value">Environment Art</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Software</span>
+                <span class="meta-value">Maya, Houdini, SpeedTree, Substance, Arnold</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Role</span>
+                <span class="meta-value">Environment, Lighting, Look Dev</span>
+            </div>
+        </div>
+
+        <div class="project-description">
+            <p>A showcase of environment work created for film, personal projects, and artistic exploration. Each piece focuses on atmosphere, scale, and storytelling through lighting and composition.</p>
+        </div>
+
+        <div class="project-gallery">
+            <div class="gallery-item">
+                <div class="gallery-images">
+                    <img src="docs/miguel-agenjo-render-v3.jpg" alt="Environment render" class="active">
+                </div>
+                <div class="caption">
+                    <strong>Environment Render</strong>
+                    Full scene with detailed vegetation, materials, and atmospheric lighting.
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-images">
+                    <img src="docs/enviro_TheRoses.png" alt="The Roses environment" class="active">
+                </div>
+                <div class="caption">
+                    <strong>The Roses</strong>
+                    Stylized environment piece exploring organic architecture and natural overgrowth.
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-images">
+                    <img src="docs/hernan_temple.png" alt="Temple environment" class="active">
+                </div>
+                <div class="caption">
+                    <strong>Ancient Temple</strong>
+                    Architectural environment with weathered stone and jungle atmosphere.
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-images">
+                    <img src="docs/memorial_enviro.png" alt="Memorial environment" class="active">
+                </div>
+                <div class="caption">
+                    <strong>Memorial</strong>
+                    Atmospheric scene exploring mood through light and material contrast.
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-images">
+                    <img src="docs/halo_village_1.png" alt="Village environment 1" class="active">
+                    <img src="docs/halo_village_2.png" alt="Village environment 2">
+                </div>
+                <div class="caption">
+                    <strong>Village</strong>
+                    Settlement environment with layered depth and architectural detail.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="project-footer">
+        <p>&copy; 2026 Miguel Agenjo. Designed with coffee and code.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.gallery-images').forEach(container => {
+            const images = container.querySelectorAll('img');
+            if (images.length <= 1) return;
+
+            let current = 0;
+
+            const prev = document.createElement('button');
+            prev.className = 'gallery-nav prev';
+            prev.innerHTML = '&#8249;';
+            const next = document.createElement('button');
+            next.className = 'gallery-nav next';
+            next.innerHTML = '&#8250;';
+            container.appendChild(prev);
+            container.appendChild(next);
+
+            const dotsContainer = document.createElement('div');
+            dotsContainer.className = 'gallery-dots';
+            images.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', () => goTo(i));
+                dotsContainer.appendChild(dot);
+            });
+            container.parentElement.insertBefore(dotsContainer, container.nextSibling);
+
+            const dots = dotsContainer.querySelectorAll('.gallery-dot');
+
+            function goTo(index) {
+                images[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = index;
+                images[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            prev.addEventListener('click', () => goTo((current - 1 + images.length) % images.length));
+            next.addEventListener('click', () => goTo((current + 1) % images.length));
+        });
+    </script>
+
+</body>
+</html>

@@ -51,6 +51,8 @@ nav {
 .logo span { color: white; }
 .logo .accent-dot { color: var(--accent); }
 
+.nav-links { display: flex; align-items: center; }
+
 .nav-links a {
     text-decoration: none;
     color: var(--text-dim);
@@ -433,6 +435,10 @@ footer {
 
 /* Responsivo */
 @media (max-width: 768px) {
+    nav { padding: 1.2rem 5%; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { margin-left: 0; font-size: 0.8rem; }
+    .nav-btn { padding: 0.5rem 1rem; }
     .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
     .tall, .wide { grid-column: span 1; grid-row: span 1; height: 250px; }
     .cv-grid { grid-template-columns: 1fr; }

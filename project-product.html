@@ -77,125 +77,15 @@
         <div class="lightbox-counter" id="lightbox-counter"></div>
     </div>
 
-    <script>
-        // Lightbox with navigation & swipe
-        (function() {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const closeBtn = lightbox.querySelector('.lightbox-close');
-            const prevBtn = lightbox.querySelector('.lb-prev');
-            const nextBtn = lightbox.querySelector('.lb-next');
-            const counter = document.getElementById('lightbox-counter');
-
-            let currentSrcs = [];
-            let currentIdx = 0;
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            function collectGallerySrcs(clickedImg) {
-                const galleryImages = clickedImg.closest('.gallery-images');
-                if (galleryImages) {
-                    return Array.from(galleryImages.querySelectorAll('img')).map(i => i.src);
-                }
-                const galleryItem = clickedImg.closest('.gallery-item');
-                if (galleryItem) {
-                    return Array.from(galleryItem.querySelectorAll('img')).map(i => i.src);
-                }
-                return [clickedImg.src];
-            }
-
-            function updateNav() {
-                const multi = currentSrcs.length > 1;
-                prevBtn.style.display = multi ? 'flex' : 'none';
-                nextBtn.style.display = multi ? 'flex' : 'none';
-                counter.textContent = multi ? (currentIdx + 1) + ' / ' + currentSrcs.length : '';
-            }
-
-            function showImage(idx) {
-                currentIdx = (idx + currentSrcs.length) % currentSrcs.length;
-                lightboxImg.src = currentSrcs[currentIdx];
-                updateNav();
-            }
-
-            document.querySelectorAll('.gallery-images img, .gallery-item > img').forEach(img => {
-                img.addEventListener('click', e => {
-                    e.stopPropagation();
-                    currentSrcs = collectGallerySrcs(img);
-                    currentIdx = currentSrcs.indexOf(img.src);
-                    if (currentIdx === -1) currentIdx = 0;
-                    showImage(currentIdx);
-                    lightbox.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-            });
-
-            function closeLightbox() {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            prevBtn.addEventListener('click', e => { e.stopPropagation(); showImage(currentIdx - 1); });
-            nextBtn.addEventListener('click', e => { e.stopPropagation(); showImage(currentIdx + 1); });
-            lightboxImg.addEventListener('click', e => e.stopPropagation());
-            lightbox.addEventListener('click', closeLightbox);
-            closeBtn.addEventListener('click', closeLightbox);
-
-            document.addEventListener('keydown', e => {
-                if (!lightbox.classList.contains('active')) return;
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') showImage(currentIdx - 1);
-                if (e.key === 'ArrowRight') showImage(currentIdx + 1);
-            });
-
-            // Touch swipe
-            lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-            lightbox.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                const diff = touchStartX - touchEndX;
-                if (Math.abs(diff) > 50) {
-                    if (diff > 0) showImage(currentIdx + 1);
-                    else showImage(currentIdx - 1);
-                }
-            });
-        })();
-
-        document.querySelectorAll('.gallery-images').forEach(container => {
-            const images = container.querySelectorAll('img');
-            if (images.length <= 1) return;
-
-            let current = 0;
-
-            const prev = document.createElement('button');
-            prev.className = 'gallery-nav prev';
-            prev.innerHTML = '&#8249;';
-            const next = document.createElement('button');
-            next.className = 'gallery-nav next';
-            next.innerHTML = '&#8250;';
-            container.appendChild(prev);
-            container.appendChild(next);
-
-            const dotsContainer = document.createElement('div');
-            dotsContainer.className = 'gallery-dots';
-            images.forEach((_, i) => {
-                const dot = document.createElement('button');
-                dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
-                dot.addEventListener('click', () => goTo(i));
-                dotsContainer.appendChild(dot);
-            });
-            container.parentElement.insertBefore(dotsContainer, container.nextSibling);
-
-            const dots = dotsContainer.querySelectorAll('.gallery-dot');
-
-            function goTo(index) {
-                images[current].classList.remove('active');
-                dots[current].classList.remove('active');
-                current = index;
-                images[current].classList.add('active');
-                dots[current].classList.add('active');
-            }
-
             prev.addEventListener('click', () => goTo((current - 1 + images.length) % images.length));
             next.addEventListener('click', () => goTo((current + 1) % images.length));
+        });
+    </script>
+
+    <script>
+        const nav = document.querySelector('.project-nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 40);
         });
     </script>
 

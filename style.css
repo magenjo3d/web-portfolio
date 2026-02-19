@@ -56,10 +56,20 @@ nav {
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: padding 0.3s ease, background 0.3s ease;
 }
 
-.logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; display: flex; align-items: center; gap: 12px; }
-.logo-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+nav.scrolled {
+    padding: 0.85rem 5%;
+    background: rgba(8, 8, 8, 0.70);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; display: flex; align-items: center; gap: 12px; transition: font-size 0.3s ease; }
+.logo-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; flex-shrink: 0; transition: width 0.3s ease, height 0.3s ease; }
+nav.scrolled .logo { font-size: 1.2rem; }
+nav.scrolled .logo-img { width: 36px; height: 36px; }
 .logo span { color: white; }
 .logo .accent-dot { color: var(--accent); }
 

@@ -33,8 +33,47 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(5, 5, 5, 0.8);
+    background: rgba(5, 5, 5, 0.55);
+    transition: padding 0.3s ease, background 0.3s ease;
 }
+
+.project-nav.scrolled {
+    padding: 0.85rem 5%;
+    background: rgba(8, 8, 8, 0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+}
+
+.project-nav .logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: white;
+    transition: font-size 0.3s ease;
+}
+
+.project-nav.scrolled .logo {
+    font-size: 1.2rem;
+}
+
+.project-nav .logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.project-nav.scrolled .logo-img {
+    width: 30px;
+    height: 30px;
+}
+
+.project-nav .accent-dot { color: var(--accent); }
 
 .back-link {
     display: flex;
@@ -54,26 +93,6 @@ body {
     width: 20px;
     height: 20px;
 }
-
-.project-nav .logo {
-    font-weight: 800;
-    font-size: 1.5rem;
-    letter-spacing: -1px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: white;
-}
-
-.project-nav .logo-img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.project-nav .accent-dot { color: var(--accent); }
 
 /* Hero banner */
 .project-hero {

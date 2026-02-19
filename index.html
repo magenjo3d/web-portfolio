@@ -232,6 +232,14 @@
     </footer>
 
     <script>
+        // Shrink nav on scroll
+        (function() {
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 40);
+            }, { passive: true });
+        })();
+
         // About modal: close on backdrop click or Escape
         (function() {
             const aboutModal = document.getElementById('aboutModal');

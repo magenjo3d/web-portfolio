@@ -209,10 +209,15 @@
         // Initialize background image carousel for bento items
         document.querySelectorAll('.bento-item[data-images]').forEach(item => {
             const imagesString = item.getAttribute('data-images');
-            const images = imagesString.split(',').map(img => img.trim());
+            if (!imagesString) return;
+            const images = imagesString.split(',').map(img => img.trim()).filter(Boolean);
+            if (images.length === 0) return;
+
             let currentIndex = 0;
+            let previousIndex = -1;
             let carouselInterval = null;
             let startTimeout = null;
+            const TRANSITION_MS = 800; // matches CSS transition duration
 
             const overlay = item.querySelector('.overlay');
             images.forEach((imgSrc) => {
@@ -222,21 +227,38 @@
                 item.insertBefore(bgDiv, overlay);
             });
 
+            // Keep the first overlay (same image as default bg) always active
+            // so the inline background-image is permanently covered
+            const bgDivs = item.querySelectorAll('.bento-item-bg');
+            bgDivs[0].classList.add('active');
+
             item.addEventListener('mouseenter', () => {
                 if (carouselInterval || startTimeout) return;
                 currentIndex = 0;
+                previousIndex = -1;
 
                 startTimeout = setTimeout(() => {
                     startTimeout = null;
                     const bgDivs = item.querySelectorAll('.bento-item-bg');
+
+                    // Cross-fade: show next image on top, then hide old after transition
+                    previousIndex = currentIndex;
                     currentIndex = 1 % images.length;
                     bgDivs[currentIndex].classList.add('active');
+                    if (previousIndex !== currentIndex) {
+                        setTimeout(() => bgDivs[previousIndex].classList.remove('active'), TRANSITION_MS);
+                    }
 
                     carouselInterval = setInterval(() => {
                         const bgDivs = item.querySelectorAll('.bento-item-bg');
-                        bgDivs[currentIndex].classList.remove('active');
+                        previousIndex = currentIndex;
                         currentIndex = (currentIndex + 1) % images.length;
                         bgDivs[currentIndex].classList.add('active');
+                        // Remove old image only after the new one has fully faded in
+                        if (previousIndex !== currentIndex) {
+                            const oldIdx = previousIndex;
+                            setTimeout(() => bgDivs[oldIdx].classList.remove('active'), TRANSITION_MS);
+                        }
                     }, 2000);
                 }, 10);
             });
@@ -251,8 +273,16 @@
                     carouselInterval = null;
                 }
                 const bgDivs = item.querySelectorAll('.bento-item-bg');
-                bgDivs.forEach(div => div.classList.remove('active'));
+                // Reset: hide all except the first (default) image
+                bgDivs.forEach((div, i) => {
+                    if (i === 0) {
+                        div.classList.add('active');
+                    } else {
+                        div.classList.remove('active');
+                    }
+                });
                 currentIndex = 0;
+                previousIndex = -1;
             });
         });
     </script>

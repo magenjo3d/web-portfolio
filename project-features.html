@@ -76,6 +76,46 @@
         <div class="lightbox-counter" id="lightbox-counter"></div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCounter = document.getElementById('lightbox-counter');
+            const closeBtn = document.querySelector('.lightbox-close');
+            const prev = document.querySelector('.lb-prev');
+            const next = document.querySelector('.lb-next');
+            let current = 0;
+            let images = [];
+
+            function goTo(index) {
+                current = index;
+                lightboxImg.src = images[current];
+                lightboxCounter.textContent = `${current + 1} / ${images.length}`;
+            }
+
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                const imgs = item.querySelectorAll('.gallery-images img');
+                imgs.forEach((img, i) => {
+                    img.addEventListener('click', () => {
+                        images = Array.from(imgs).map(im => im.src);
+                        current = i;
+                        goTo(current);
+                        lightbox.classList.add('active');
+                    });
+                });
+            });
+
+            closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
+            lightbox.addEventListener('click', e => {
+                if (e.target === lightbox) lightbox.classList.remove('active');
+            });
+            document.addEventListener('keydown', e => {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') lightbox.classList.remove('active');
+                if (e.key === 'ArrowLeft') goTo((current - 1 + images.length) % images.length);
+                if (e.key === 'ArrowRight') goTo((current + 1) % images.length);
+            });
+
             prev.addEventListener('click', () => goTo((current - 1 + images.length) % images.length));
             next.addEventListener('click', () => goTo((current + 1) % images.length));
         });

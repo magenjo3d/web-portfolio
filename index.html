@@ -280,10 +280,11 @@
                 item.insertBefore(bgDiv, overlay);
             });
 
-            // Keep the first overlay (same image as default bg) always active
-            // so the inline background-image is permanently covered
+            // Keep the first overlay always active and clear the inline
+            // background-image so it doesn't bleed through the border
             const bgDivs = item.querySelectorAll('.bento-item-bg');
             bgDivs[0].classList.add('active');
+            item.style.backgroundImage = 'none';
 
             // Start carousel automatically with offset timing
             function startCarousel() {

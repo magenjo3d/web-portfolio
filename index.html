@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miguel Agenjo | Portfolio 2026</title>
+    <title>Miguel Agenjo | Portfolio web</title>
     <link rel="stylesheet" href="style.css?v=20260219">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
@@ -58,6 +58,7 @@
             <span></span>
         </button>
         <div class="nav-links">
+            <a href="#" onclick="event.preventDefault(); document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open'); document.getElementById('aboutModal').classList.add('active'); document.body.style.overflow='hidden';">About</a>
             <a href="#work" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');">Work</a>
             <a href="#cv" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');">CV</a>
             <a href="#contact" class="nav-btn" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');">Contact</a>
@@ -68,6 +69,16 @@
         <section class="hero">
             <h1>3D Generalist & Lighting TD<span>.</span></h1>
             <p class="highlight-text">Creating worlds</p>
+            <div class="showreel">
+                <div class="video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/1123963850" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class="skills" style="padding-bottom: 40px;">
+            <h2>Work & Projects</h2>
         </section>
 
         <section id="work" class="bento-grid">
@@ -201,12 +212,45 @@
         
     </main>
 
+    <!-- About Modal -->
+    <div class="modal" id="aboutModal">
+        <span class="close-modal" onclick="document.getElementById('aboutModal').classList.remove('active'); document.body.style.overflow='';">&times;</span>
+        <div class="modal-content">
+            <div class="about-modal-content">
+                <img src="docs/pp.jpeg" alt="Miguel Agenjo" class="about-photo">
+                <div class="modal-info">
+                    <h3>Miguel Agenjo</h3>
+                    <p>3D Generalist & Lighting TD based in Madrid, Spain. With 8+ years of experience in the VFX industry, I've contributed to award-winning feature films and series, specializing in lighting, environments, look development, and pipeline tool creation.</p>
+                    <p style="margin-top: 20px;">Currently working as Senior Lighting - Generalist at Metrópolis VFX / Important Looking Pirates.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>© 2026 Miguel Agenjo. Designed with coffee and code.</p>
     </footer>
 
     <script>
+        // About modal: close on backdrop click or Escape
+        (function() {
+            const aboutModal = document.getElementById('aboutModal');
+            aboutModal.addEventListener('click', (e) => {
+                if (e.target === aboutModal) {
+                    aboutModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && aboutModal.classList.contains('active')) {
+                    aboutModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        })();
+
         // Initialize background image carousel for bento items
+        let itemIndex = 0;
         document.querySelectorAll('.bento-item[data-images]').forEach(item => {
             const imagesString = item.getAttribute('data-images');
             if (!imagesString) return;
@@ -216,8 +260,9 @@
             let currentIndex = 0;
             let previousIndex = -1;
             let carouselInterval = null;
-            let startTimeout = null;
             const TRANSITION_MS = 800; // matches CSS transition duration
+            const INTERVAL_MS = 4000; // slower carousel timing
+            const OFFSET_MS = itemIndex * 800; // stagger each item by 800ms
 
             const overlay = item.querySelector('.overlay');
             images.forEach((imgSrc) => {
@@ -232,23 +277,13 @@
             const bgDivs = item.querySelectorAll('.bento-item-bg');
             bgDivs[0].classList.add('active');
 
-            item.addEventListener('mouseenter', () => {
-                if (carouselInterval || startTimeout) return;
+            // Start carousel automatically with offset timing
+            function startCarousel() {
+                if (carouselInterval) return;
                 currentIndex = 0;
                 previousIndex = -1;
 
-                startTimeout = setTimeout(() => {
-                    startTimeout = null;
-                    const bgDivs = item.querySelectorAll('.bento-item-bg');
-
-                    // Cross-fade: show next image on top, then hide old after transition
-                    previousIndex = currentIndex;
-                    currentIndex = 1 % images.length;
-                    bgDivs[currentIndex].classList.add('active');
-                    if (previousIndex !== currentIndex) {
-                        setTimeout(() => bgDivs[previousIndex].classList.remove('active'), TRANSITION_MS);
-                    }
-
+                setTimeout(() => {
                     carouselInterval = setInterval(() => {
                         const bgDivs = item.querySelectorAll('.bento-item-bg');
                         previousIndex = currentIndex;
@@ -259,31 +294,13 @@
                             const oldIdx = previousIndex;
                             setTimeout(() => bgDivs[oldIdx].classList.remove('active'), TRANSITION_MS);
                         }
-                    }, 2000);
-                }, 10);
-            });
+                    }, INTERVAL_MS);
+                }, OFFSET_MS);
+            }
 
-            item.addEventListener('mouseleave', () => {
-                if (startTimeout) {
-                    clearTimeout(startTimeout);
-                    startTimeout = null;
-                }
-                if (carouselInterval) {
-                    clearInterval(carouselInterval);
-                    carouselInterval = null;
-                }
-                const bgDivs = item.querySelectorAll('.bento-item-bg');
-                // Reset: hide all except the first (default) image
-                bgDivs.forEach((div, i) => {
-                    if (i === 0) {
-                        div.classList.add('active');
-                    } else {
-                        div.classList.remove('active');
-                    }
-                });
-                currentIndex = 0;
-                previousIndex = -1;
-            });
+            // Start carousel automatically on page load
+            startCarousel();
+            itemIndex++;
         });
     </script>
 

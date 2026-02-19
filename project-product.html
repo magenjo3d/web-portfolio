@@ -79,6 +79,57 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Inline gallery navigation (buttons, dots, swipe) ---
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                const container = item.querySelector('.gallery-images');
+                if (!container) return;
+                const imgs = container.querySelectorAll('img');
+                if (imgs.length <= 1) return;
+
+                let idx = 0;
+                function show(i) {
+                    imgs.forEach(im => im.classList.remove('active'));
+                    dots.forEach(d => d.classList.remove('active'));
+                    idx = (i + imgs.length) % imgs.length;
+                    imgs[idx].classList.add('active');
+                    dots[idx].classList.add('active');
+                }
+
+                // Nav buttons
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'gallery-nav prev';
+                prevBtn.innerHTML = '&#8249;';
+                prevBtn.addEventListener('click', e => { e.stopPropagation(); show(idx - 1); });
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'gallery-nav next';
+                nextBtn.innerHTML = '&#8250;';
+                nextBtn.addEventListener('click', e => { e.stopPropagation(); show(idx + 1); });
+                container.appendChild(prevBtn);
+                container.appendChild(nextBtn);
+
+                // Dots
+                const dotsContainer = document.createElement('div');
+                dotsContainer.className = 'gallery-dots';
+                const dots = [];
+                imgs.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+                    dot.addEventListener('click', e => { e.stopPropagation(); show(i); });
+                    dotsContainer.appendChild(dot);
+                    dots.push(dot);
+                });
+                container.after(dotsContainer);
+
+                // Touch swipe
+                let startX = 0;
+                container.addEventListener('touchstart', e => { startX = e.changedTouches[0].screenX; }, { passive: true });
+                container.addEventListener('touchend', e => {
+                    const diff = startX - e.changedTouches[0].screenX;
+                    if (Math.abs(diff) > 50) show(diff > 0 ? idx + 1 : idx - 1);
+                });
+            });
+
+            // --- Lightbox ---
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const lightboxCounter = document.getElementById('lightbox-counter');
@@ -119,6 +170,17 @@
 
             prev.addEventListener('click', () => goTo((current - 1 + images.length) % images.length));
             next.addEventListener('click', () => goTo((current + 1) % images.length));
+
+            // Lightbox touch swipe
+            let lbStartX = 0;
+            lightbox.addEventListener('touchstart', e => { lbStartX = e.changedTouches[0].screenX; }, { passive: true });
+            lightbox.addEventListener('touchend', e => {
+                const diff = lbStartX - e.changedTouches[0].screenX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) goTo((current + 1) % images.length);
+                    else goTo((current - 1 + images.length) % images.length);
+                }
+            });
         });
     </script>
 

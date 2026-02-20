@@ -59,6 +59,19 @@ nav.scrolled {
     border-bottom: 1px solid var(--border);
 }
 
+/* Subtle thin separator used between major page blocks */
+.section-sep {
+    border: 0;
+    height: 0.5px;
+    width: 60%;
+    max-width: 960px;
+    margin: 0px auto 50px auto;
+    background: linear-gradient(90deg, transparent 0%, rgba(0,242,255,0.12) 35%, rgba(255,255,255,0.18) 50%, rgba(0,242,255,0.12) 65%, transparent 100%);
+    opacity: 0.35;
+    border-radius: 1px;
+    box-shadow: 0 0 2px 0 rgba(0,242,255,0.06);
+}
+
 .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; display: flex; align-items: center; gap: 12px; transition: font-size 0.3s ease; }
 .logo-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; flex-shrink: 0; transition: width 0.3s ease, height 0.3s ease; }
 nav.scrolled .logo { font-size: 1.2rem; }
@@ -173,8 +186,8 @@ nav.scrolled .logo-img { width: 36px; height: 36px; }
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: 100px 10%;
-    max-width: 1100px;
+    padding: 50px 10%;
+    max-width: 1225px;
     margin: 0 auto;
 }
 
@@ -196,7 +209,7 @@ h1 span {
 
 /* Showreel video */
 .showreel {
-    margin-top: 50px;
+    margin-top: 35px;
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
@@ -223,16 +236,19 @@ h1 span {
 .bento-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
-    grid-auto-rows: 200px;
+    grid-auto-rows: 260px;
     gap: 20px;
-    padding: 0 5% 100px;
-    scroll-margin-top: 120px;
+    padding: 10px 5% 90px;
+    scroll-margin-top: 170px;
+    max-width: 1900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .bento-item {
     background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 24px;
+    border-radius: 15px;
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -264,7 +280,7 @@ h1 span {
 }
 
 /* Skills */
-.skills { text-align: center; padding-bottom: 100px; }
+.skills { text-align: center; padding-bottom: 120px; }
 .skills h2 { margin-bottom: 25px; }
 .skills .software-title { margin-top: 60px; }
 
@@ -285,7 +301,7 @@ h1 span {
 
 /* Sección CV */
 .cv-section {
-    padding: 80px 10%;
+    padding: 70px 10%;
     background: rgba(255, 255, 255, 0.02);
     border-radius: 24px;
     margin: 40px 5% 100px;
@@ -361,7 +377,7 @@ h1 span {
 
 /* CONTACT SECTION */
 .contact-section {
-    padding: 100px 10%;
+    padding: 80px 10%;
     margin-bottom: 50px;
     scroll-margin-top: 50px;
 }
@@ -492,12 +508,12 @@ h1 span {
     max-width: 85%;
     width: 1000px;
     overflow: hidden;
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
+    transform: translateY(12px);
+    transition: transform 0.32s cubic-bezier(0.2, 0.9, 0.3, 1);
 }
 
 .modal.active .modal-content {
-    transform: translateY(0);
+    transform: translateY(-3vh);
 }
 
 #modalImg {

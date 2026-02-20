@@ -70,6 +70,7 @@ nav.scrolled {
     opacity: 0.35;
     border-radius: 1px;
     box-shadow: 0 0 2px 0 rgba(0,242,255,0.06);
+    padding-top: 2px;
 }
 
 .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; display: flex; align-items: center; gap: 12px; transition: font-size 0.3s ease; }
@@ -239,7 +240,7 @@ h1 span {
     grid-auto-rows: 260px;
     gap: 20px;
     padding: 10px 5% 90px;
-    scroll-margin-top: 170px;
+    scroll-margin-top: 180px;
     max-width: 1900px;
     margin-left: auto;
     margin-right: auto;
@@ -280,7 +281,7 @@ h1 span {
 }
 
 /* Skills */
-.skills { text-align: center; padding-bottom: 120px; }
+.skills { text-align: center; padding-bottom: 80px; }
 .skills h2 { margin-bottom: 25px; }
 .skills .software-title { margin-top: 60px; }
 

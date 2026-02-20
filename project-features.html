@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Awarded Features | Miguel Agenjo</title>
-    <link rel="icon" type="image/png" href="docs/common/logo M.png">
+    <link rel="icon" type="image/jpeg" href="docs/common/logo M.jpg">
     <link rel="stylesheet" href="project.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
 </head>
@@ -16,13 +16,13 @@
             Back to Work
         </a>
         <a href="index.html" class="logo">
-            <img src="docs/common/logo M.png" alt="Logo" class="logo-img">
+            <img src="docs/common/logo M.jpg" alt="Logo" class="logo-img">
             <span>MIGUEL AGENJO<span class="accent-dot">.</span></span>
         </a>
     </nav>
 
     <div class="project-hero">
-        <img src="docs/game-of-thrones/got1.png" alt="Awarded Features">
+        <img src="docs/game-of-thrones/got1.jpg" alt="Awarded Features">
         <div class="project-hero-overlay">
             <h1>Awarded Features<span>.</span></h1>
             <p class="project-tagline">Contributions to award-winning film and television productions</p>
@@ -53,15 +53,15 @@
 
             <div class="gallery-item">
                 <div class="gallery-images">
-                    <img src="docs/game-of-thrones/got1.png" class="active" loading="lazy">
-                    <img src="docs/game-of-thrones/theon2.png" loading="lazy">
-                    <img src="docs/game-of-thrones/got2.png" loading="lazy">
-                    <img src="docs/game-of-thrones/got3.png" loading="lazy">
-                    <img src="docs/game-of-thrones/got6.png" loading="lazy">
-                    <img src="docs/game-of-thrones/got4.png" loading="lazy">
-                    <img src="docs/game-of-thrones/got5.png" loading="lazy">
-                    <img src="docs/game-of-thrones/got7.png" loading="lazy">
-                    <img src="docs/game-of-thrones/got8.png" loading="lazy">
+                    <img src="docs/game-of-thrones/got1.jpg" class="active" loading="lazy">
+                    <img src="docs/game-of-thrones/theon2.jpg" loading="lazy">
+                    <img src="docs/game-of-thrones/got2.jpg" loading="lazy">
+                    <img src="docs/game-of-thrones/got3.jpg" loading="lazy">
+                    <img src="docs/game-of-thrones/got6.jpg" loading="lazy">
+                    <img src="docs/game-of-thrones/got4.jpg" loading="lazy">
+                    <img src="docs/game-of-thrones/got5.jpg" loading="lazy">
+                    <img src="docs/game-of-thrones/got7.jpg" loading="lazy">
+                    <img src="docs/game-of-thrones/got8.jpg" loading="lazy">
                 </div>
                 <div class="caption">
                     <strong>Project: Game of Thrones, Season 8. HBO.</strong>
@@ -194,9 +194,24 @@
 
     <script>
         const nav = document.querySelector('.project-nav');
+        let lastY = 0;
+        let snapTimeout = null;
+        const SNAP_THRESHOLD = 40;
         window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 40);
-        });
+            const y = window.scrollY;
+            nav.classList.toggle('scrolled', y > 40);
+            if (y < lastY && y > 0 && y <= SNAP_THRESHOLD) {
+                if (!snapTimeout) {
+                    snapTimeout = setTimeout(() => {
+                        if (window.scrollY > 0 && window.scrollY <= SNAP_THRESHOLD) {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                        snapTimeout = null;
+                    }, 100);
+                }
+            }
+            lastY = y;
+        }, { passive: true });
     </script>
 
 </body>

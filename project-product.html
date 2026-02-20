@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Visualization, Real Time & AI | Miguel Agenjo</title>
-    <link rel="icon" type="image/png" href="docs/common/logo M.png">
+    <link rel="icon" type="image/jpeg" href="docs/common/logo M.jpg">
     <link rel="stylesheet" href="project.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
 </head>
@@ -16,7 +16,7 @@
             Back to Work
         </a>
         <a href="index.html" class="logo">
-            <img src="docs/common/logo M.png" alt="Logo" class="logo-img">
+            <img src="docs/common/logo M.jpg" alt="Logo" class="logo-img">
             <span>MIGUEL AGENJO<span class="accent-dot">.</span></span>
         </a>
     </nav>
@@ -187,9 +187,24 @@
 
     <script>
         const nav = document.querySelector('.project-nav');
+        let lastY = 0;
+        let snapTimeout = null;
+        const SNAP_THRESHOLD = 40;
         window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 40);
-        });
+            const y = window.scrollY;
+            nav.classList.toggle('scrolled', y > 40);
+            if (y < lastY && y > 0 && y <= SNAP_THRESHOLD) {
+                if (!snapTimeout) {
+                    snapTimeout = setTimeout(() => {
+                        if (window.scrollY > 0 && window.scrollY <= SNAP_THRESHOLD) {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                        snapTimeout = null;
+                    }, 100);
+                }
+            }
+            lastY = y;
+        }, { passive: true });
     </script>
 
 </body>

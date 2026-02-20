@@ -399,6 +399,14 @@ h1 span {
     flex-direction: column;
 }
 
+.link-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
 .link-card span {
     color: var(--text-main);
     font-weight: 800;
@@ -683,4 +691,9 @@ footer {
     .cv-skills { grid-template-columns: 1fr; }
     .cv-header { flex-direction: column; align-items: flex-start; gap: 20px; }
     .modal-content { max-width: 95%; }
+}
+
+/* Make icons blue */
+.link-card img[alt="ArtStation"], img[alt="imdb"] {
+    filter: brightness(0) saturate(90%) invert(41%) sepia(10%) saturate(7450%) hue-rotate(165deg) brightness(175%) contrast(101%);
 }

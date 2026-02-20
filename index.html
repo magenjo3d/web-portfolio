@@ -59,8 +59,8 @@
             <span></span>
         </button>
         <div class="nav-links">
-            <a href="#" onclick="event.preventDefault(); document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open'); document.getElementById('aboutModal').classList.add('active'); document.body.style.overflow='hidden';">About</a>
-            <a href="#work" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');">Work</a>
+            <a href="#" onclick="event.preventDefault(); document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open'); document.getElementById('aboutModal').classList.add('active'); document.body.style.overflow='hidden';">About Me</a>
+            <a href="#work" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');">Projects</a>
             <a href="#cv" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');">CV</a>
             <a href="#contact" class="nav-btn" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');">Contact</a>
         </div>
@@ -78,20 +78,7 @@
             </div>
         </section>
 
-        
 
-        <section class="skills">
-            <h2>Core skills</h2>
-            <div class="skill-tags">
-                <span>3D Environments</span> <span>Lighting</span> <span>Look development</span> <span>Tool scripting</span> 
-            </div>       
-            <h2 class="software-title">Software expertise</h2>
-            <div class="skill-tags">
-                <span>Maya</span> <span>Houdini</span> <span>Arnold/V-ray</span> 
-                <span>Nuke</span> <span>Substance Suite</span> <span>Python/C</span>
-                <span>Zbrush</span> <span>Mari</span> <span>SpeedTree</span>
-            </div>
-        </section>
 
         <hr class="section-sep">
 
@@ -181,12 +168,13 @@
         </section> 
         
         
-
+<hr class="section-sep">
         <section id="contact" class="contact-section">
             <div class="contact-container">
                 <div class="contact-info">
                     <h2>Let's connect<span>.</span></h2>
                     <p></p>
+                    
                     
                     <div class="interest-links">
                         <a href="https://www.linkedin.com/in/miguel-agenjo-ram%C3%ADrez?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="blank" class="link-card">
@@ -232,10 +220,24 @@
         <div class="modal-content">
             <div class="about-modal-content">
                 <img src="docs/common/pp.jpeg" alt="Miguel Agenjo" class="about-photo" loading="lazy">
-                <div class="modal-info">
-                    <h3>Miguel Agenjo</h3>
-                    <p>3D Generalist & Lighting TD based in Madrid, Spain. With 8+ years of experience in the VFX industry, I've contributed to award-winning feature films and series, specializing in lighting, environments, look development, and pipeline tool creation.</p>
-                    <p style="margin-top: 20px;">Currently working as Senior Lighting - Generalist at Metrópolis VFX / Important Looking Pirates.</p>
+                <div class="about-modal-grid">
+                    <div class="modal-info">
+                        <h3>Miguel Agenjo</h3>
+                        <p>3D Generalist & Lighting TD based in Madrid, Spain.</p><p>With 8+ years of experience in the VFX industry, I've contributed to award-winning feature films and series, specializing in lighting, environments, look development, and pipeline tool creation.</p>
+                        <p style="margin-top: 20px;">Currently working as Senior Lighting - Generalist at Metrópolis VFX / Important Looking Pirates.</p>
+                    </div>
+                    <section class="skills about-skills-grid">
+                        <h2>Core skills</h2>
+                        <div class="skill-tags">
+                            <span>3D Environments</span> <span>Lighting</span> <span>Look development</span> <span>Tool scripting</span> <span>CGI/VFX</span>
+                        </div>
+                        <h2 class="software-title">Software expertise</h2>
+                        <div class="skill-tags">
+                            <span>Maya</span> <span>Houdini</span> <span>Arnold/V-ray</span>
+                            <span>Nuke</span> <span>Substance Suite</span> <span>Python/C</span>
+                            <span>Zbrush</span> <span>Mari</span> <span>SpeedTree</span> <span>After Effects</span>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>

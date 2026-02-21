@@ -87,7 +87,7 @@
             <h2>Work & Projects</h2>
         </section>
         <section id="work" class="bento-grid">
-            <a href="project-characters.html" class="bento-item tall bento-characters" style="background-image: url('docs/keeper-of-the-forest/miguel-agenjo-comp-v002.jpg'); background-size: cover; background-position: center;" data-images="docs/keeper-of-the-forest/miguel-agenjo-comp-v002.jpg,docs/keeper-of-the-forest/miguel-agenjo-comp-v01.jpg,docs/invisible/dragon_1_render.jpg,docs/lock-and-key/spider_render5.jpg,docs/the-first/cicada_render.jpg">
+            <a href="project-characters.html" class="bento-item tall bento-characters" style="background-image: url('docs/keeper-of-the-forest/miguel-agenjo-comp-v002.jpg'); background-size: cover; background-position: center;" data-images="docs/keeper-of-the-forest/miguel-agenjo-comp-v002.jpg,docs/keeper-of-the-forest/miguel-agenjo-comp-v01.jpg,docs/invisible/dragon_1_render.jpg,docs/lock-and-key/spider_render5.jpg,docs/the-first/cicada_render.jpg, docs/eterna-ascent/rig.jpg">
                 <div class="overlay">
                     <h3>Characters & Creatures</h3>
                     <p></p>
@@ -342,6 +342,43 @@
             startCarousel();
             itemIndex++;
         });
+
+        // Scroll-triggered animation for bento-items, cv-items, and contact-info
+        function animateScrollItems() {
+            const windowHeight = window.innerHeight;
+            // Bento items
+            document.querySelectorAll('.bento-item').forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < windowHeight - 60 && rect.bottom > 60) {
+                    item.classList.add('visible');
+                } else {
+                    item.classList.remove('visible');
+                }
+            });
+            // CV items
+            document.querySelectorAll('.cv-item').forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < windowHeight - 60 && rect.bottom > 60) {
+                    item.classList.add('visible');
+                } else {
+                    item.classList.remove('visible');
+                }
+            });
+            // Contact info
+            const contactInfo = document.querySelector('.contact-info');
+            if (contactInfo) {
+                const rect = contactInfo.getBoundingClientRect();
+                if (rect.top < windowHeight - 60 && rect.bottom > 60) {
+                    contactInfo.classList.add('visible');
+                } else {
+                    contactInfo.classList.remove('visible');
+                }
+            }
+        }
+
+        // Initial check and scroll event
+        animateScrollItems();
+        window.addEventListener('scroll', animateScrollItems);
     </script>
 
 </body>

@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <nav class="project-nav">
+    <nav class="project-nav scrolled">
         <a href="index.html#work" class="back-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
             Back to Home
@@ -194,25 +194,7 @@
     </script>
 
     <script>
-        const nav = document.querySelector('.project-nav');
-        let lastY = 0;
-        let snapTimeout = null;
-        const SNAP_THRESHOLD = 40;
-        window.addEventListener('scroll', () => {
-            const y = window.scrollY;
-            nav.classList.toggle('scrolled', y > 40);
-            if (y < lastY && y > 0 && y <= SNAP_THRESHOLD) {
-                if (!snapTimeout) {
-                    snapTimeout = setTimeout(() => {
-                        if (window.scrollY > 0 && window.scrollY <= SNAP_THRESHOLD) {
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }
-                        snapTimeout = null;
-                    }, 100);
-                }
-            }
-            lastY = y;
-        }, { passive: true });
+        // Header is always compressed and translucent; scroll logic removed.
     </script>
 
 </body>

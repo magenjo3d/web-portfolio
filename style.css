@@ -262,8 +262,8 @@ nav.scrolled .logo-img { width: 34px; height: 34px; }
 /* ─── HERO ───────────────────────────────────────────── */
 .hero {
     text-align: center;
-    padding: 80px 10% 60px;
-    max-width: 1100px;
+    padding: 32px 10% 40px;
+    max-width: 1250px;
     margin: 0 auto;
     position: relative;
 }
@@ -290,7 +290,7 @@ h1 span { color: var(--accent); }
 
 /* Showreel */
 .showreel {
-    margin-top: 48px;
+    margin-top: 16px;
     max-width: 960px;
     margin-left: auto;
     margin-right: auto;
@@ -319,7 +319,7 @@ h1 span { color: var(--accent); }
     grid-template-rows: 260px 260px;
     gap: 20px;
     padding: 10px 5% 90px;
-    scroll-margin-top: 180px;
+    scroll-margin-top: 25vh;
     max-width: 1900px;
     margin-left: auto;
     margin-right: auto;
@@ -562,18 +562,23 @@ h1 span { color: var(--accent); }
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-top: 36px;
+    align-items: stretch;
+    overflow: visible;
 }
 
 .link-card {
     background: var(--bg-2);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     padding: 18px 20px;
     border-radius: var(--radius-md);
     text-decoration: none;
-    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s var(--ease-out);
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s var(--ease-out), transform 0.25s var(--ease-out), z-index 0.25s;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    will-change: transform;
+    z-index: 1;
+    overflow: visible;
 }
 
 .link-icon {
@@ -596,9 +601,11 @@ h1 span { color: var(--accent); }
 }
 
 .link-card:hover {
-    border-color: rgba(200, 241, 53, 0.25);
+    border-color: #d6ac5f;
+    box-shadow: 0 0 0 1px rgba(214, 172, 95, 0.644), 0 2px 16px 0 rgba(214, 172, 95, 0.10);
     background: var(--accent-dim);
     transform: translateX(6px);
+    z-index: 2;
 }
 
 /* Contact form */
@@ -723,7 +730,7 @@ h1 span { color: var(--accent); }
     position: absolute;
     top: 12px;
     right: 12px;
-    font-size: 28px;
+    font-size: 40px;
     color: var(--text-dim);
     cursor: pointer;
     line-height: 1;
@@ -731,8 +738,8 @@ h1 span { color: var(--accent); }
     font-family: var(--font-mono);
     font-weight: 300;
     /* Large touch target */
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -766,7 +773,7 @@ h1 span { color: var(--accent); }
     -webkit-overflow-scrolling: touch;
     transform: none;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     box-shadow: none;
 }

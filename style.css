@@ -576,13 +576,13 @@ h1 span { color: var(--accent); }
 .link-card {
     background: var(--bg-2);
     border: 2px solid var(--border);
-    padding: 18px 20px;
+    padding: 10px 12px;
     border-radius: var(--radius-md);
     text-decoration: none;
     transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s var(--ease-out), transform 0.25s var(--ease-out), z-index 0.25s;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
     will-change: transform;
     z-index: 1;
     overflow: visible;

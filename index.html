@@ -7,6 +7,8 @@
     <link rel="icon" type="image/jpeg" href="docs/common/logo M.jpg">
     <link rel="stylesheet" href="style.css?v=20260219">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+    <!-- Howler.js for SFX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
     <style>
         .bento-item {
             cursor: pointer;
@@ -387,4 +389,43 @@
     </script>
 
 </body>
+    <!-- UI Hover SFX -->
+    <script>
+    // Use the provided sound file in docs/common
+    const hoverSfx = new Howl({
+        src: ['docs/common/connect_tabs.mp3'],
+        volume: 0.05
+    });
+    const bentoHoverSfx = new Howl({
+        src: ['docs/common/bento_items.mp3'],
+        volume: 1.0
+    });
+
+    // Sensibility: minimum ms between SFX triggers
+    const HOVER_SFX_DEBOUNCE = 200; // Adjust this value for more/less sensitivity
+    let lastHoverSfxTime = 0;
+
+    window.addEventListener('DOMContentLoaded', function() {
+        // .bento-item gets its own sound
+        document.querySelectorAll('.bento-item').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                const now = Date.now();
+                if (now - lastHoverSfxTime > HOVER_SFX_DEBOUNCE) {
+                    bentoHoverSfx.play();
+                    lastHoverSfxTime = now;
+                }
+            });
+        });
+        // All other clickable UI elements: a, button, [role=button] (but NOT .bento-item), EXCLUDING header bar (nav) and Download PDF button
+        document.querySelectorAll('a:not(.bento-item):not(nav *):not([download]), button:not(.bento-item):not(nav *):not([download]), [role="button"]:not(.bento-item):not(nav *):not([download])').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                const now = Date.now();
+                if (now - lastHoverSfxTime > HOVER_SFX_DEBOUNCE) {
+                    hoverSfx.play();
+                    lastHoverSfxTime = now;
+                }
+            });
+        });
+    });
+    </script>
 </html>

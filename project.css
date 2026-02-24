@@ -215,7 +215,7 @@ body::after {
 /* ─── PROJECT META ───────────────────────────────────── */
 .project-meta {
     display: flex;
-    gap: 40px;
+    gap: 20px;
     margin-bottom: 50px;
     padding: 25px 30px;
     background: var(--card-bg);
@@ -505,6 +505,34 @@ body::after {
 
 .gallery-images img,
 .gallery-item > img { cursor: zoom-in; }
+
+/* ─── CONTENT ───────────────────────────────────────── */
+.skill-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.skill-tags span {
+    border: 1px solid var(--border);
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    color: var(--text-dim);
+    background: var(--bg-2);
+    transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
+    letter-spacing: 0.02em;
+}
+
+.skill-tags span:hover {
+    border-color: rgba(214, 172, 95, 0.3);
+    color: var(--text-main);
+    background: rgba(214, 172, 95, 0.05);
+    box-shadow: 0 0 0 1px rgba(214, 172, 95, 0.1);
+}
 
 /* ─── FOOTER ─────────────────────────────────────────── */
 .project-footer {

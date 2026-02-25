@@ -9,7 +9,7 @@
 
 /* ─── TOKENS ─────────────────────────────────────────── */
 :root {
-    --bg:          #111110;
+    --bg:          #0f0f0e;
     --bg-2:        #5a67662e;
     --bg-3:        #181816;
     --card-bg:     rgba(255, 255, 255, 0.03);
@@ -561,7 +561,7 @@ body::before {
 /* ─── FOOTER ─────────────────────────────────────────── */
 .project-footer {
     text-align: center;
-    padding: 40px;
+    padding: 20px;
     border-top: 1px solid var(--border);
     color: var(--text-dim);
     font-family: var(--font-mono);

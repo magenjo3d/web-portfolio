@@ -328,7 +328,7 @@ nav.scrolled .logo-img { width: 34px; height: 34px; }
 .highlight-text {
     font-family: var(--font-display);
     font-style: italic;
-    font-weight: 600;
+    font-weight: 300;
     background: linear-gradient(90deg, #a1a1aa, #5bb698, #b9aa79, #a1a1aa);
     background-size: 250% auto;
     -webkit-background-clip: text;
@@ -375,8 +375,8 @@ h1 span { color: var(--accent); }
 
 .hero p {
     color: var(--text-mid);
-    font-size: clamp(1rem, 1.4vw, 1.15rem);
-    font-weight: 400;
+    font-size: clamp(1rem, 1.4vw, 0.9rem);
+    font-weight: 300;
     max-width: 480px;
     margin: 0 auto 32px;
     line-height: 1.85;

@@ -101,15 +101,11 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 5%;
+    padding: 0.95rem 5%;
     position: sticky;
     top: 0;
     z-index: 100;
     transition: padding 0.4s var(--ease-out), background 0.4s ease;
-}
-
-nav.scrolled {
-    padding: 0.85rem 5%;
     background: rgba(12, 12, 11, 0.86);
     backdrop-filter: blur(32px);
     -webkit-backdrop-filter: blur(32px);
@@ -117,25 +113,32 @@ nav.scrolled {
     box-shadow: 0 1px 0 rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.3);
 }
 
+
+nav.scrolled {
+    padding: 0.85rem 5%;
+}
+
 /* FIX: @supports fallback for backdrop-filter (Firefox, older browsers) */
 @supports not (backdrop-filter: blur(1px)) {
-    nav.scrolled { background: rgba(12, 12, 11, 0.97); }
+    nav { background: rgba(12, 12, 11, 0.97); }
 }
+
 
 .logo {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     letter-spacing: -0.5px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     transition: font-size 0.3s ease;
 }
 
+
 .logo-img {
-    width: 46px;
-    height: 46px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
@@ -1039,6 +1042,7 @@ h1 span { color: var(--accent); }
     line-height: 1.8;
     max-width: 520px;
     color: var(--text-mid);
+
 }
 
 /* About Modal Skills Grid */
@@ -1046,7 +1050,7 @@ h1 span { color: var(--accent); }
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     gap: 48px 56px;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
 }
 

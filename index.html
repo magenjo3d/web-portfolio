@@ -255,27 +255,6 @@
 
     <script>
         // Shrink nav on scroll + snap to top
-        (function() {
-            const nav = document.querySelector('nav');
-            let lastY = 0;
-            let snapTimeout = null;
-            const SNAP_THRESHOLD = 40;
-            window.addEventListener('scroll', () => {
-                const y = window.scrollY;
-                nav.classList.toggle('scrolled', y > 40);
-                if (y < lastY && y > 0 && y <= SNAP_THRESHOLD) {
-                    if (!snapTimeout) {
-                        snapTimeout = setTimeout(() => {
-                            if (window.scrollY > 0 && window.scrollY <= SNAP_THRESHOLD) {
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
-                            }
-                            snapTimeout = null;
-                        }, 100);
-                    }
-                }
-                lastY = y;
-            }, { passive: true });
-        })();
 
         // About modal: close on backdrop click or Escape
         (function() {

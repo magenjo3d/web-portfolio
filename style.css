@@ -730,19 +730,21 @@ h1 span { color: var(--accent); }
 }
 
 .link-card {
-    background: rgba(255,255,255,0.02);
+    background: rgba(34, 33, 31, 0.475);
     border: 1px solid var(--border);
     padding: 12px 16px;
     border-radius: var(--radius-md);
     text-decoration: none;
     transition: border-color 0.25s ease, background 0.25s ease,
                 box-shadow 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+                
     display: flex;
     flex-direction: column;
     gap: 6px;
     will-change: transform;
     z-index: 1;
     overflow: visible;
+    
 }
 
 .link-icon {

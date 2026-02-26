@@ -164,7 +164,7 @@ nav.scrolled .logo-img { width: 34px; height: 34px; }
     color: var(--text-dim);
     padding: 0.45rem 0.9rem;
     font-size: 0.9rem;
-    font-family: var(--font-mono);
+    font-family: var(--font-display);
     letter-spacing: 0.04em;
     border-radius: var(--radius-sm);
     transition: color 0.2s ease, background 0.2s ease;

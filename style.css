@@ -33,7 +33,7 @@
 
     --radius-sm:   8px;
     --radius-md:   14px;
-    --radius-lg:   22px;
+    --radius-lg:   20px;
     --radius-xl:   24px;
 
     --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
@@ -1010,7 +1010,7 @@ h1 span { color: var(--accent); }
 }
 
 .about-photo {
-    width: clamp(220px, 28vw, 420px);
+    width: clamp(220px, 28vw, 320px);
     aspect-ratio: 3 / 4;
     object-fit: cover;
     object-position: top;

@@ -101,7 +101,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.95rem 5%;
+    padding: 0.85rem 5%;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -127,7 +127,7 @@ nav.scrolled {
 .logo {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     letter-spacing: -0.5px;
     display: flex;
     align-items: center;
@@ -163,7 +163,7 @@ nav.scrolled .logo-img { width: 34px; height: 34px; }
     text-decoration: none;
     color: var(--text-dim);
     padding: 0.45rem 0.9rem;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-family: var(--font-display);
     letter-spacing: 0.04em;
     border-radius: var(--radius-sm);

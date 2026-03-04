@@ -57,11 +57,13 @@
 
             <h1 class="landing-title">MIGUEL AGENJO<span class="accent-dot">.</span></h1>
             <p class="landing-subtitle">Senior 3D Generalist · Lighting TD</p>
-            
+
+            <a href="#reel" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');" class="landing-contact-btn" onclick="event.stopPropagation();">
+                Showreel</a>
             <a href="#contact" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');" class="landing-contact-btn" onclick="event.stopPropagation();">
-                Contact
-            </a>
-            <p class="landing-tap-hint">Click to explore portfolio</p>
+                Contact</a>
+            
+                <p class="landing-tap-hint">Click to explore full portfolio</p>
         </div>
     </div>
 
@@ -79,6 +81,7 @@
         </button>
         <div class="nav-links">
             <a href="#" onclick="event.preventDefault(); document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open'); document.getElementById('aboutModal').classList.add('active'); document.body.style.overflow='hidden';">About Me</a>
+            <a href="#reel" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');">Showreel</a>
             <a href="#work" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');">Projects</a>
             <!--<a href="project-tools.html" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');">Tools</a>-->
             <a href="#cv" onclick="document.querySelector('.hamburger').classList.remove('active'); this.parentElement.classList.remove('open');">Cv</a>
@@ -87,7 +90,7 @@
     </nav>
 
     <main>
-        <section class="hero">
+        <section class="hero" id="reel">
             <h1>3D Generalist &<br>Lighting TD<span>.</span></h1>
             <p>Crafting <span class="highlight-text">pixels</span>, creating worlds.</p> 
             <div class="showreel">

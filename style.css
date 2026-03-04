@@ -1029,7 +1029,7 @@ h1 span { color: var(--accent); }
 
 .about-modal-content .modal-info h3 {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(2rem, 3.5vw, 4rem);
     font-weight: 800;
     margin-bottom: 24px;
     line-height: 1.1;
@@ -1211,4 +1211,73 @@ img[alt="imdb"] {
     }
 
     .interest-links { grid-template-columns: 1fr; }
+}
+
+/* ─── INTRO ANIMATIONS ───────────────────────────────── */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-scale {
+    animation: fadeInScale 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Initial states */
+nav, .hero h1, .hero p, .showreel, .skills h2 {
+    opacity: 0;
+}
+
+nav {
+    animation: fadeInUp 0.5s ease-out 0.1s forwards;
+}
+
+.hero h1 {
+    animation: fadeInScale 0.6s ease-out 0.2s forwards;
+}
+
+.hero p {
+    animation: fadeIn 0.5s ease-out 0.3s forwards;
+}
+
+.showreel {
+    animation: fadeInUp 0.5s ease-out 0.4s forwards;
+}
+
+.skills h2 {
+    animation: fadeInUp 0.5s ease-out 0.2s forwards;
 }

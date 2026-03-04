@@ -1406,9 +1406,11 @@ body.landing-active .skills h2 {
     align-items: center;
     gap: 8px;
     padding: 0.65rem 1.8rem;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     color: var(--text-dim);
-    border: 1px solid rgba(214, 172, 95, 0.2);
+    border: 1px solid rgba(214, 172, 95, 0.1);
     border-radius: 50px;
     font-family: var(--font-mono);
     font-size: 0.76rem;
@@ -1420,7 +1422,8 @@ body.landing-active .skills h2 {
     transform: translateY(10px);
     animation: landingFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
     transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease,
-                box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                backdrop-filter 0.3s ease;
     z-index: 2;
 }
 
@@ -1432,8 +1435,10 @@ body.landing-active .skills h2 {
 .landing-contact-btn:hover {
     color: var(--text-main);
     border-color: var(--accent);
-    background: rgba(214, 172, 95, 0.06);
-    box-shadow: 0 0 30px rgba(214, 172, 95, 0.1);
+    background: rgba(214, 172, 95, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 0 30px rgba(214, 172, 95, 0.15);
     transform: translateY(-2px);
 }
 

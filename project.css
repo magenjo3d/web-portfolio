@@ -89,7 +89,7 @@ body::before {
     font-family: var(--font-display);
     font-weight: 800;
     font-size: 1.5rem;
-    letter-spacing: -0.5px;
+    letter-spacing: 0.05px;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -195,7 +195,7 @@ body::before {
     line-height: 1.8;
     color: var(--text-mid);
     margin-bottom: 60px;
-    max-width: 800px;
+    max-width: 2000px;
 }
 
 .project-description p { margin-bottom: 20px; }

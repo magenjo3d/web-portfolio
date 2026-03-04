@@ -1029,7 +1029,7 @@ h1 span { color: var(--accent); }
 
 .about-modal-content .modal-info h3 {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-size: clamp(2rem, 4vw, 4rem);
     font-weight: 800;
     margin-bottom: 24px;
     line-height: 1.1;
@@ -1280,4 +1280,220 @@ nav {
 
 .skills h2 {
     animation: fadeInUp 0.5s ease-out 0.2s forwards;
+}
+
+/* ─── LANDING OVERLAY ────────────────────────────────── */
+.landing-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.8s;
+}
+
+.landing-overlay.dismissed {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Shader background canvas */
+.landing-shader {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0;
+    animation: shaderFadeIn 2s ease-out 0.3s forwards;
+}
+
+.landing-shader canvas {
+    display: block;
+    width: 200% !important;
+    height: 100% !important;
+}
+
+@keyframes shaderFadeIn {
+    to { opacity: 0.06; }
+}
+
+/* Block main-page intro animations while landing is visible */
+body.landing-active nav,
+body.landing-active .hero h1,
+body.landing-active .hero p,
+body.landing-active .showreel,
+body.landing-active .skills h2 {
+    animation: none;
+    opacity: 0;
+}
+
+.landing-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+/* Logo */
+.landing-logo-wrapper {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: landingLogoIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+.landing-logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(214, 172, 95, 0.2);
+    box-shadow: 0 0 60px rgba(214, 172, 95, 0.12),
+                0 0 120px rgba(214, 172, 95, 0.06);
+}
+
+/* Title */
+.landing-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.2vw, 3.6rem);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--text-main);
+    margin-top: 32px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: landingFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+}
+
+.landing-dot {
+    color: var(--accent);
+}
+
+/* Subtitle */
+.landing-subtitle {
+    font-family: var(--font-mono);
+    font-size: clamp(0.85rem, 1.15vw, 1.92rem);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 12px;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: landingFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
+}
+
+/* Decorative line */
+.landing-line {
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin-top: 32px;
+    animation: landingLineExpand 1s cubic-bezier(0.16, 1, 0.3, 1) 1.3s forwards;
+}
+
+/* Contact button */
+.landing-contact-btn {
+    margin-top: 36px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.65rem 1.8rem;
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid rgba(214, 172, 95, 0.2);
+    border-radius: 50px;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: landingFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
+    transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease,
+                box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
+}
+
+.landing-contact-btn svg {
+    color: var(--accent);
+    transition: color 0.3s ease;
+}
+
+.landing-contact-btn:hover {
+    color: var(--text-main);
+    border-color: var(--accent);
+    background: rgba(214, 172, 95, 0.06);
+    box-shadow: 0 0 30px rgba(214, 172, 95, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Tap hint */
+.landing-tap-hint {
+    margin-top: 40px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: landingFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.7s forwards;
+}
+
+@keyframes tapPulse {
+    0%, 100% { opacity: 0.5; }
+    50%      { opacity: 1; }
+}
+
+.landing-tap-hint {
+    animation: landingFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.7s forwards,
+               tapPulse 3s ease-in-out 2.4s infinite;
+}
+
+/* Landing keyframes */
+@keyframes landingLogoIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes landingFadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes landingLineExpand {
+    to {
+        width: min(320px, 60vw);
+    }
+}
+
+/* Re-trigger main page animations after landing dismiss */
+body.landing-dismissed nav {
+    animation: fadeInUp 0.5s ease-out 0.1s forwards;
+}
+body.landing-dismissed .hero h1 {
+    animation: fadeInScale 0.6s ease-out 0.25s forwards;
+}
+body.landing-dismissed .hero p {
+    animation: fadeIn 0.5s ease-out 0.4s forwards;
+}
+body.landing-dismissed .showreel {
+    animation: fadeInUp 0.5s ease-out 0.55s forwards;
+}
+body.landing-dismissed .skills h2 {
+    animation: fadeInUp 0.5s ease-out 0.5s forwards;
 }

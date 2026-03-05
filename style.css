@@ -225,6 +225,142 @@ nav.scrolled .logo-img { width: 34px; height: 34px; }
     outline-offset: 3px;
 }
 
+/* ─── GLITCH TEXT EFFECT ─────────────────────────────── */
+.glitch-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    margin-top: 4px;
+}
+
+.glitch-wrapper_landing {
+    display: flex;
+    align-items: center;
+    margin-left: -145px;
+    margin-top: 10px;
+    
+}
+
+.glitch-text {
+    position: absolute;
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    text-transform: uppercase;
+    min-width: 140px;
+    /* Pixelated rendering */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    animation: fadeIn 1s ease-out forwards;
+    
+}
+
+.glitch-inner {
+    position: relative;
+    display: block;
+    /* Disable font smoothing for pixel-crisp look */
+    font-synthesis: none;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    
+
+    
+}
+
+.glitch-inner::before,
+.glitch-inner::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.glitch-inner::before {
+    color: #ff0055;
+    z-index: -1;
+    text-shadow:
+        -3px 0 rgba(255, 0, 0, 0.9),
+        0 -2px rgba(255, 50, 0, 0.7);
+}
+
+.glitch-inner::after {
+    color: #00ffff;
+    z-index: -2;
+    text-shadow:
+        3px 0 rgba(0, 255, 255, 0.9),
+        0 2px rgba(0, 200, 255, 0.7);
+}
+
+/* ── Activated only when JS adds .is-glitching ── */
+.glitch-inner.is-glitching {
+    animation: glitch-main 0.5s steps(1, end) forwards;
+}
+
+.glitch-inner.is-glitching::before {
+    animation: glitch-red 0.5s steps(1, end) forwards;
+}
+
+.glitch-inner.is-glitching::after {
+    animation: glitch-cyan 0.5s steps(1, end) forwards;
+}
+
+@keyframes glitch-main {
+    0%   { filter: none;                                              transform: translateX(0); }
+    10%  { filter: brightness(1.4) contrast(1.3) hue-rotate(5deg);   transform: translateX(-3px) scaleX(1.02); }
+    20%  { filter: brightness(0.6) contrast(1.6);                    transform: translateX(4px)  scaleX(0.98); }
+    30%  { filter: brightness(1.5) contrast(0.9) hue-rotate(-10deg); transform: translateX(-4px) scaleX(1.03); }
+    40%  { filter: brightness(0.8) contrast(1.5);                    transform: translateX(3px)  scaleX(0.97); }
+    50%  { filter: brightness(1.3) contrast(1.2) hue-rotate(8deg);   transform: translateX(-2px); }
+    60%  { filter: brightness(0.9) contrast(1.1);                    transform: translateX(2px); }
+    70%  { filter: brightness(1.2) contrast(0.95);                   transform: translateX(-1px); }
+    80%  { filter: none;                                              transform: translateX(0); }
+    100% { filter: none;                                              transform: translateX(0); }
+}
+
+@keyframes glitch-red {
+    0%   { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateX(0); }
+    10%  { opacity: 1; clip-path: inset(0   0 70% 0); transform: translateX(-5px) scaleY(1.06); }
+    20%  { opacity: 1; clip-path: inset(15% 0 40% 0); transform: translateX(5px)  scaleY(0.94); }
+    30%  { opacity: 1; clip-path: inset(55% 0 25% 0); transform: translateX(-4px); }
+    40%  { opacity: 1; clip-path: inset(25% 0 55% 0); transform: translateX(4px); }
+    50%  { opacity: 1; clip-path: inset(70% 0 20% 0); transform: translateX(-5px); }
+    60%  { opacity: 1; clip-path: inset(10% 0 65% 0); transform: translateX(3px); }
+    70%  { opacity: 0.7; clip-path: inset(0 0 80% 0); transform: translateX(-1px); }
+    85%  { opacity: 0.3; clip-path: inset(0 0 0   0); transform: translateX(0); }
+    100% { opacity: 0;   clip-path: inset(0 0 0   0); transform: translateX(0); }
+}
+
+@keyframes glitch-cyan {
+    0%   { opacity: 0; clip-path: inset(100% 0 0   0); transform: translateX(0); }
+    10%  { opacity: 1; clip-path: inset(30%  0 30% 0); transform: translateX(5px)  scaleY(0.94); }
+    20%  { opacity: 1; clip-path: inset(60%  0 20% 0); transform: translateX(-5px) scaleY(1.06); }
+    30%  { opacity: 1; clip-path: inset(10%  0 60% 0); transform: translateX(4px); }
+    40%  { opacity: 1; clip-path: inset(45%  0 42% 0); transform: translateX(-4px); }
+    50%  { opacity: 1; clip-path: inset(20%  0 55% 0); transform: translateX(5px); }
+    60%  { opacity: 1; clip-path: inset(70%  0 15% 0); transform: translateX(-3px); }
+    70%  { opacity: 0.7; clip-path: inset(0   0 85% 0); transform: translateX(1px); }
+    85%  { opacity: 0.3; clip-path: inset(0   0 0   0); transform: translateX(0); }
+    100% { opacity: 0;   clip-path: inset(0   0 0   0); transform: translateX(0); }
+}
+
+/* ─── RESPONSIVE ADJUSTMENTS FOR GLITCH ─────────────── */
+nav.scrolled .glitch-text {
+    font-size: 0.88rem;
+}
+
+@media (max-width: 768px) {
+    .glitch-wrapper {
+        display: flex;
+    }
+}
+
 /* Hamburger */
 .hamburger {
     display: none;
@@ -1312,6 +1448,7 @@ nav {
     opacity: 0;
     animation: shaderFadeIn 2s ease-out 0.3s forwards;
 }
+
 
 .landing-shader canvas {
     display: block;

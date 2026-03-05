@@ -51,9 +51,15 @@
 <body>
 
     <!-- Landing Presentation -->
+
     <div class="landing-overlay" id="landingOverlay">
         <div class="landing-shader" id="landingShader"></div>
         <div class="landing-content">
+            <div class="glitch-wrapper_landing">
+                <div class="glitch-text" data-words='["VFX", "CGI", "ANIMATION", "3D DESIGN"]'>
+                    <span class="glitch-inner">VFX</span>
+                </div>
+            </div>           
             <h1 class="landing-title">MIGUEL AGENJO<span class="accent-dot">.</span></h1>
             <p class="landing-subtitle">Senior 3D Generalist · Lighting TD</p>
             
@@ -73,6 +79,7 @@
         <a href="#" class="logo" style="text-decoration:none;color:inherit;" onclick="event.preventDefault(); window.scrollTo({top:0, behavior:'smooth'});">
             <img src="docs/common/logo M_original.jpg" alt="Logo" class="logo-img">
             <span>MIGUEL AGENJO<span class="accent-dot">.</span></span>
+
         </a>
         <button class="hamburger" aria-label="Menu" onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('open');">
             <span></span>
@@ -250,8 +257,8 @@
                 <div class="about-modal-grid">
                     <div class="modal-info">
                         <h3>Miguel Agenjo</h3>
-                        <p>3D Generalist & Lighting TD based in Madrid, Spain.</p><p>With 8+ years of experience in the VFX industry, I've contributed to award-winning feature films and series, specializing in lighting, environments, look development, and pipeline tool creation.</p>
-                        <p style="margin-top: 20px;">Currently working as Senior Lighting - Generalist at Metrópolis VFX / Important Looking Pirates.</p>
+                        <p>Senior 3D Generalist & Lighting TD based in Madrid, Spain.</p><p>With 8+ years of experience in the VFX industry, I've contributed to award-winning feature films and series, specializing in lighting, environments, look development, and pipeline tool creation.</p>
+                        <p style="margin-top: 20px;">Currently working as Senior Lighting Artist - Generalist at Metrópolis VFX / Important Looking Pirates.</p>
                     </div>
                     <section class="skills about-skills-grid">
                         <h2>Core skills</h2>
@@ -555,5 +562,39 @@
             });
         });
     });
+    </script>
+
+    <!-- Glitch Text Morphing Script -->
+    <script>
+        const glitchElement = document.querySelector('.glitch-inner');
+        const words = JSON.parse(glitchElement.closest('.glitch-text').getAttribute('data-words'));
+        let currentWordIndex = 0;
+        const GLITCH_DURATION = 500;
+
+        // Set initial word
+        glitchElement.textContent = words[currentWordIndex];
+        glitchElement.setAttribute('data-text', words[currentWordIndex]);
+
+        function triggerGlitch() {
+            // Kick off glitch animation
+            glitchElement.classList.add('is-glitching');
+
+            setTimeout(() => {
+                // Swap word at peak of glitch
+                currentWordIndex = (currentWordIndex + 1) % words.length;
+                const word = words[currentWordIndex];
+                glitchElement.textContent = word;
+                glitchElement.setAttribute('data-text', word);
+            }, GLITCH_DURATION * 0.4);
+
+            setTimeout(() => {
+                // Remove class so animation can fire again next cycle
+                glitchElement.classList.remove('is-glitching');
+                // Force reflow so the animation resets cleanly
+                void glitchElement.offsetWidth;
+            }, GLITCH_DURATION);
+        }
+
+        setInterval(triggerGlitch, 3000);
     </script>
 </html>

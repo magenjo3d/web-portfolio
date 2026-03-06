@@ -11,6 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
     <!-- Three.js for landing shader -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
+    <!-- Vimeo Player API for cinema mode -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
     <style>
         .bento-item {
             cursor: pointer;
@@ -74,6 +76,7 @@
     </div>
 
     <div class="cursor-glow"></div>
+    <div id="cinemaOverlay" class="cinema-overlay"></div>
 
     <nav>
         <a href="#" class="logo" style="text-decoration:none;color:inherit;" onclick="event.preventDefault(); window.scrollTo({top:0, behavior:'smooth'});">
@@ -263,7 +266,7 @@
                     <section class="skills about-skills-grid">
                         <h2>Core skills</h2>
                         <div class="skill-tags">
-                            <span>3D Environments</span> <span>Lighting</span> <span>Look development</span> <span>Tool scripting</span> <span>CGI/VFX</span>
+                            <span>CGI/VFX</span> <span>3D Environments</span> <span>Lighting</span> <span>Look development</span> <span>Tool scripting</span> 
                         </div>
                         <h2 class="software-title">Software expertise</h2>
                         <div class="skill-tags">
@@ -596,5 +599,17 @@
         }
 
         setInterval(triggerGlitch, 3000);
+    </script>
+
+    <script>
+    // Cinema mode — darken page when showreel is playing
+    (function() {
+        const iframe = document.querySelector('.video-wrapper iframe');
+        if (!iframe) return;
+        const player = new Vimeo.Player(iframe);
+        player.on('play',  function() { document.body.classList.add('cinema-active'); });
+        player.on('pause', function() { document.body.classList.remove('cinema-active'); });
+        player.on('ended', function() { document.body.classList.remove('cinema-active'); });
+    })();
     </script>
 </html>

@@ -553,7 +553,7 @@ h1 span { color: var(--accent); }
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
-    border-radius: var(--radius-xl);
+    border-radius: 20px;
     border: 1px solid rgba(106, 85, 47, 0.12);
     box-shadow:
         0 16px 48px rgba(0,0,0,1),

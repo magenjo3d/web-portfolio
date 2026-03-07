@@ -11,8 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
     <!-- Three.js for landing shader -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
-    <!-- Vimeo Player API for cinema mode -->
-    <script src="https://player.vimeo.com/api/player.js"></script>
+    <!-- YouTube IFrame API for cinema mode -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <style>
         .bento-item {
             cursor: pointer;
@@ -64,6 +64,7 @@
         </div>
     </div>
 
+    
     <div class="cursor-glow"></div>
     <div id="cinemaOverlay" class="cinema-overlay"></div>
 
@@ -95,7 +96,7 @@
             <p>Crafting <span class="highlight-text">pixels</span>, creating worlds.</p> 
             <div class="showreel">
                 <div class="video-wrapper">
-                    <iframe src="https://player.vimeo.com/video/1123963850" frameborder="0" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/TXZXByQWle8" frameborder="0" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 
             </div>
@@ -152,7 +153,7 @@
 
             <a href="project-product.html" class="bento-item small bento-product" style="background-image: url('docs/exterior-visualization/miguel-agenjo-exteriorbe2 - copia.jpg'); background-size: cover; background-position: center;" data-images="docs/exterior-visualization/miguel-agenjo-exteriorbe2 - copia.jpg, docs/exterior-visualization/miguel-agenjo-exteriorbe1.jpg">
                 <div class="bento-media" aria-hidden="true"></div>
-                <span class="bento-item-num">PROD VIZ</span>
+                <span class="bento-item-num">PRODUCT VIZ</span>
             </a>
             <a  class="bento-desc-item">
                 <span class="desc-num">04 / 05</span>
@@ -628,10 +629,42 @@
     (function() {
         const iframe = document.querySelector('.video-wrapper iframe');
         if (!iframe) return;
-        const player = new Vimeo.Player(iframe);
-        player.on('play',  function() { document.body.classList.add('cinema-active'); });
-        player.on('pause', function() { document.body.classList.remove('cinema-active'); });
-        player.on('ended', function() { document.body.classList.remove('cinema-active'); });
+
+        const src = iframe.getAttribute('src') || '';
+        if (!src.includes('enablejsapi=1')) {
+            const sep = src.includes('?') ? '&' : '?';
+            const origin = window.location.origin;
+            const originParam = origin && origin !== 'null' ? '&origin=' + encodeURIComponent(origin) : '';
+            iframe.src = src + sep + 'enablejsapi=1' + originParam;
+        }
+
+        function initCinemaPlayer() {
+            new YT.Player(iframe, {
+                events: {
+                    onStateChange: function(event) {
+                        if (event.data === YT.PlayerState.PLAYING) {
+                            document.body.classList.add('cinema-active');
+                        }
+                        if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                            document.body.classList.remove('cinema-active');
+                        }
+                    }
+                }
+            });
+        }
+
+        if (window.YT && window.YT.Player) {
+            initCinemaPlayer();
+            return;
+        }
+
+        const previousOnYouTubeReady = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = function() {
+            if (typeof previousOnYouTubeReady === 'function') {
+                previousOnYouTubeReady();
+            }
+            initCinemaPlayer();
+        };
     })();
     </script>
 </html>

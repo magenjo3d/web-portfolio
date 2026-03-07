@@ -1013,7 +1013,9 @@ h1 span { color: var(--accent); }
 }
 
 .link-card {
-    background: rgba(34, 33, 31, 0.475);
+    background: rgba(34, 33, 31, 0.299);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     padding: 12px 16px;
     border-radius: var(--radius-md);

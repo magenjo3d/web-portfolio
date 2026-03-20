@@ -611,7 +611,8 @@ h1 span { color: var(--accent); }
     transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1),
                 transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
                 border-color 0.3s ease,
-                box-shadow 0.3s ease;
+                box-shadow 0.3s ease,
+                filter 0.3s ease;
     opacity: 0;
     transform: translateY(40px) scale(0.96);
     pointer-events: none;
@@ -677,7 +678,8 @@ h1 span { color: var(--accent); }
     transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1),
                 transform 0.7s cubic-bezier(0.23, 1, 0.32, 1),
                 border-color 0.3s ease,
-                box-shadow 0.3s ease;
+                box-shadow 0.3s ease,
+                filter 0.3s ease;
 }
 
 .bento-item.visible:hover {
@@ -695,7 +697,7 @@ h1 span { color: var(--accent); }
 }
 
 .bento-desc-item {
-    
+    cursor: default;
     text-decoration: none;
     color: inherit;
     border-radius: var(--radius-lg);
@@ -733,10 +735,39 @@ h1 span { color: var(--accent); }
 }
 
 .bento-desc-item.visible {
-    
     opacity: 1;
     transform: translateY(0) scale(1);
     pointer-events: auto;
+}
+
+.bento-grid.bento-hovering .bento-item.visible:not(.bento-hovered) {
+    filter: brightness(0.65) grayscale(0.15);
+}
+
+.bento-item.bento-hovered {
+    border-color: rgba(214, 172, 95, 0.5);
+    transform: translateY(-5px) scale(1.015);
+    box-shadow:
+        0 0 0 1px rgba(214, 172, 95, 0.366),
+        0 16px 48px rgba(0,0,0,1),
+        0 4px 16px rgba(214, 172, 95, 0.2);
+    filter: none;
+}
+
+.bento-item.bento-hovered::after {
+    transform: translate(1px, -1px) scale(1.04);
+    color: var(--accent);
+}
+
+.bento-desc-item.bento-hovered {
+    border-color: rgba(214, 172, 95, 0.28);
+    background: var(--gradient_bg);
+    transform: translateY(-2px);
+}
+
+.bento-desc-item.bento-hovered .desc-rule {
+    width: 46px;
+    opacity: 0.62;
 }
 
 /*
@@ -898,6 +929,7 @@ h1 span { color: var(--accent); }
     border-left: 2px solid transparent;
     transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out),
                 border-color 0.3s ease, padding-left 0.3s ease;
+    position: relative;
 }
 
 .cv-item:last-child { margin-bottom: 0; }
@@ -910,6 +942,25 @@ h1 span { color: var(--accent); }
 
 .cv-item.visible:hover {
     border-left-color: var(--accent);
+}
+
+.cv-item:focus-within {
+    border-left-color: var(--accent);
+}
+
+.cv-item-tab-btn {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: transparent;
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+    cursor: default;
+}
+
+.cv-item-tab-btn:focus-visible {
+    outline: none;
 }
 
 .cv-item .date {
